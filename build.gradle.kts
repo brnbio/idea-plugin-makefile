@@ -23,9 +23,11 @@ kotlin {
 intellijPlatform {
     pluginConfiguration {
         name = "Make Targets"
-        version = "1.0.0"
-        ideaVersion.sinceBuild.set("241")
-        ideaVersion.untilBuild.set(null as String?)
+        version = "1.1.0"
+        ideaVersion {
+            sinceBuild = "241"
+            untilBuild = provider { null }
+        }
     }
     buildSearchableOptions = false
     publishing {
