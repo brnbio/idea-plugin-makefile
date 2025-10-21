@@ -25,7 +25,7 @@
     ]]></description>
 
     <change-notes><![CDATA[
-    <h3>0.1.0 - Initial Release</h3>
+    <h3>1.0.0 - Initial Release</h3>
     <ul>
         <li>Dropdown menu for Makefile targets</li>
         <li>Support for target descriptions from comments</li>

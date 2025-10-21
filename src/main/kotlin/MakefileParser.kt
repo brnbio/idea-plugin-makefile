@@ -25,7 +25,9 @@ object MakefileParser {
                 if (cleanName.isNotEmpty() &&
                     !cleanName.startsWith(".") &&
                     !cleanName.contains("%") &&
-                    !cleanName.contains("=")) {
+                    !cleanName.contains("=") &&
+                    cleanName != "all" &&
+                    cleanName != "help") {
                     targets[cleanName] = comment
                 }
             }

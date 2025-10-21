@@ -1,7 +1,8 @@
 package de.brainbo.maketargets
 
 import com.intellij.openapi.project.Project
-import org.jetbrains.plugins.terminal.TerminalView
+import com.intellij.terminal.ui.TerminalWidget
+import org.jetbrains.plugins.terminal.TerminalToolWindowManager
 import java.io.File
 
 object TerminalRunner {
@@ -10,10 +11,9 @@ object TerminalRunner {
 
         val wd = makefile.parentFile?.absolutePath ?: project.basePath
 
-        val term = TerminalView.getInstance(project)
-            .createLocalShellWidget(wd, "Make: $target")
-
-        term.executeCommand("make $target")
+        val terminalManager = TerminalToolWindowManager.getInstance(project)
+        val widget: TerminalWidget = terminalManager.createShellWidget(wd, "Make: $target", /*requestFocus=*/ true, /* deferSessionStartUntilUiShown = */ false)
+        widget.sendCommandToExecute("make $target")
     }
 
 }

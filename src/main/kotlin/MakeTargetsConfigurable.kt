@@ -3,7 +3,7 @@ package de.brainbo.maketargets
 import com.intellij.openapi.options.Configurable
 import com.intellij.openapi.ui.TextFieldWithBrowseButton
 import com.intellij.openapi.ui.Messages
-import com.intellij.openapi.fileChooser.FileChooserDescriptorFactory
+import com.intellij.openapi.fileChooser.FileChooserDescriptor
 import com.intellij.ui.components.JBLabel
 import com.intellij.util.ui.FormBuilder
 import javax.swing.JComponent
@@ -15,11 +15,21 @@ class MakeTargetsConfigurable : Configurable {
     override fun getDisplayName(): String = "Make Targets"
 
     override fun createComponent(): JComponent {
+        val descriptor = FileChooserDescriptor(
+            true,  // chooseFiles
+            false, // chooseFolders
+            false, // chooseJars
+            false, // chooseJarsAsFiles
+            false, // chooseJarContents
+            false  // chooseMultiple
+        ).withTitle("Select Makefile")
+         .withDescription("Choose your project's Makefile")
+
         makefileField.addBrowseFolderListener(
             "Select Makefile",
             "Choose your project's Makefile",
             null,
-            FileChooserDescriptorFactory.createSingleFileDescriptor()
+            descriptor
         )
 
         return FormBuilder.createFormBuilder()
