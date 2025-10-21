@@ -23,7 +23,7 @@ kotlin {
 intellijPlatform {
     pluginConfiguration {
         name = "Make Targets"
-        version = "1.1.0"
+        version = "1.1.1"
         ideaVersion {
             sinceBuild = "241"
             untilBuild = provider { null }
