@@ -13,7 +13,7 @@ class MakeTargetActionGroup : DefaultActionGroup(), DumbAware {
     override fun getChildren(e: AnActionEvent?): Array<AnAction> {
         val project = e?.project ?: return emptyArray()
 
-        val settings = MakeTargetsSettingsService.getInstance().state
+        val settings = MakeTargetsSettingsService.getInstance(project).state
         val path = settings.makefilePath.ifBlank { return emptyArray() }
 
         val makefile = File(path)
@@ -34,8 +34,12 @@ class MakeTargetActionGroup : DefaultActionGroup(), DumbAware {
 
     override fun update(e: AnActionEvent) {
         val project = e.project
-        val settings = MakeTargetsSettingsService.getInstance().state
-        val hasPath = settings.makefilePath.isNotBlank()
+        val hasPath = if (project != null) {
+            val settings = MakeTargetsSettingsService.getInstance(project).state
+            settings.makefilePath.isNotBlank()
+        } else {
+            false
+        }
 
         e.presentation.isEnabled = project != null && hasPath
         e.presentation.text = "Make Targets"

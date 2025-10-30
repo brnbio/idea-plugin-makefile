@@ -27,10 +27,11 @@
     <depends>com.intellij.modules.platform</depends>
     <depends>org.jetbrains.plugins.terminal</depends>
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="de.brainbo.maketargets.MakeTargetsSettingsService"/>
-        <applicationConfigurable id="de.brainbo.maketargets.settings"
-                                 instance="de.brainbo.maketargets.MakeTargetsConfigurable"
-                                 displayName="Make Targets"/>
+        <projectService serviceImplementation="de.brainbo.maketargets.MakeTargetsSettingsService"/>
+        <projectConfigurable id="de.brainbo.maketargets.settings"
+                             instance="de.brainbo.maketargets.MakeTargetsConfigurable"
+                             displayName="Make Targets"
+                             parentId="project.propCompiler"/>
     </extensions>
     <actions>
         <group id="de.brainbo.maketargets.MakeTargetActionGroup"

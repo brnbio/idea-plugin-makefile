@@ -13,6 +13,7 @@ dependencies {
         create("IC", "2024.1")
         bundledPlugin("org.jetbrains.plugins.terminal")
         instrumentationTools()
+        pluginVerifier()
     }
 }
 
@@ -30,10 +31,13 @@ intellijPlatform {
         }
     }
     buildSearchableOptions = false
+    pluginVerification {
+        ides {
+            recommended()
+        }
+    }
     publishing {
         token = providers.environmentVariable("PUBLISH_TOKEN")
-        // Channels: default, beta, alpha, eap
-        // channels = listOf("default")
     }
     signing {
         certificateChain = providers.environmentVariable("CERTIFICATE_CHAIN")

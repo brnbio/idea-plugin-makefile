@@ -1,7 +1,9 @@
 package de.brainbo.maketargets
 
 import com.intellij.openapi.components.*
+import com.intellij.openapi.project.Project
 
+@Service(Service.Level.PROJECT)
 @State(name = "MakeTargetsSettings", storages = [Storage("makeTargets.xml")])
 class MakeTargetsSettingsService : PersistentStateComponent<MakeTargetsSettingsService.State> {
 
@@ -18,6 +20,6 @@ class MakeTargetsSettingsService : PersistentStateComponent<MakeTargetsSettingsS
     }
 
     companion object {
-        fun getInstance(): MakeTargetsSettingsService = service()
+        fun getInstance(project: Project): MakeTargetsSettingsService = project.service()
     }
 }
